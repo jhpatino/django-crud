@@ -1,0 +1,27 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+{% if is_in_task_view %}
+<h1>Tasks Pending View</h1>
+{% elif is_in_task_completed_view %}
+<h1>Tasks Completed View</h1>
+{% endif %}
+
+<ul>
+  {% for task in tasks %}
+  <li>
+    <a href="{% url 'task_detail' task.id%}">
+      {% if task.is_important %}
+      <h1>{{task.title}}</h1>
+      {% else %}
+      <h1>{{task.title}}</h1>
+      {% endif %}
+    </a>
+  </li>
+  <p>{{task.description}}</p>
+  <p>{{task.datecompleted|date:'M j Y:i'}}</p>
+  {% endfor %}
+</ul>
+
+{% endblock %}

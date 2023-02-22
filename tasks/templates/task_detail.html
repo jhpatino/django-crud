@@ -1,0 +1,27 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <h1>Task Detail View</h1>
+    <h2>Title: {{task.title}}</h2>
+    <h3>Description:</h3>
+    <p>{{task.description}}</p>
+
+    <h2>Update Task:</h2>
+    <h3>{{error}}</h3>
+    <form method="POST">
+        {% csrf_token %}
+        {{update_form.as_p}}
+        <button>Update</button>
+    </form>
+
+    <form action="{% url 'task_completed' task.id%}" method="POST">
+        {% csrf_token %}
+        <button>Completed</button>
+    </form>
+
+    <form action="{% url 'task_deleted' task.id%}" method="POST">
+        {% csrf_token %}
+        <button>Delete</button>
+    </form>
+
+{% endblock %}

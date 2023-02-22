@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+<main class="container">
+  <form action="{% url 'signUp' %}" method="POST" class="card card-body">
+    <h1>SignUp View</h1>
+    <h2>{{error}}</h2>
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>SignUp</button>
+  </form>
+</main>
+
+{% endblock %}
